@@ -47,4 +47,6 @@ public abstract class Entity : MonoBehaviour
         
         return default;
     }
+
+    public abstract void Stun(Vector3 originPoint, float duration);
 }
