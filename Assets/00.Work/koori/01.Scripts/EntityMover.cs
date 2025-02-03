@@ -54,6 +54,14 @@ public class EntityMover : MonoBehaviour, IEntityComp
         _movement = Vector3.zero;
     }
 
+    public void KnockBack(Vector2 force, float time)
+    {
+        CanManualMove = false;
+        StopImmediately(true);
+        AddForceToEntity(new Vector3(force.x,0 , force.y));
+        
+    }
+
     public void SetMovement(Vector3 movement)
     {
         _movement = movement;
