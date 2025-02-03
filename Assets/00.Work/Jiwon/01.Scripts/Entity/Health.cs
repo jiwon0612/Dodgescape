@@ -26,7 +26,6 @@ public class Health : MonoBehaviour,IEntityComp
     public void TakeDamage(float damage, Vector3 originPoint, float stunDuration)
     {
         _currentHealth -= damage;
-        _entity.Stun(originPoint, stunDuration);
         OnHitEvent?.Invoke(_currentHealth);
     }
 }
