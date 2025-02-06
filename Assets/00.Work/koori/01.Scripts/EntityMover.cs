@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 
 public class EntityMover : MonoBehaviour, IEntityComp
@@ -58,8 +59,8 @@ public class EntityMover : MonoBehaviour, IEntityComp
     {
         CanManualMove = false;
         StopImmediately(true);
-        AddForceToEntity(new Vector3(force.x,0 , force.y));
-        
+        AddForceToEntity(new Vector3(force.x, 0, force.y));
+        DOVirtual.DelayedCall(time, () => CanManualMove = true);
     }
 
     public void SetMovement(Vector3 movement)
