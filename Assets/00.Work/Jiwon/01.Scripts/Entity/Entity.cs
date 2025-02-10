@@ -7,7 +7,7 @@ public abstract class Entity : MonoBehaviour
 {
     protected Dictionary<Type, IEntityComp> _components;
     
-    private void Awake()
+    protected virtual void Awake()
     {
         _components = new Dictionary<Type, IEntityComp>();
         GetComponentsInChildren<IEntityComp>(true).ToList().ForEach((x) => _components.Add(x.GetType(), x));
