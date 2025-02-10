@@ -8,10 +8,11 @@ public class Health : MonoBehaviour,IEntityComp
     
     public float maxHealth = 10f;
     private float _currentHealth;
-
+    
     public UnityEvent OnDeathEvent;
     public UnityEvent<float> OnHitEvent;
-
+    
+    
     public void Initialize(Entity entity)
     {
         _entity = entity;
