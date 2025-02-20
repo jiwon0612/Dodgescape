@@ -1,20 +1,12 @@
 using System;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : Entity
 {
-    [SerializeField] private PlayerInputSO playerInputSO;
-    private EntityRenderer _renderer;
+    [field : SerializeField] public float DetectionDistance {get; private set; }
+    
+    private NavMeshAgent agent;
 
-    protected override void AfterInit()
-    {
-        base.AfterInit();
-        _renderer = GetComp<EntityRenderer>();
-    }
-
-    private void Update()
-    {
-        Vector2 dir = playerInputSO.MoveDirection;
-        _renderer.SetRotation(dir.x, dir.y);
-    }
+    
 }
