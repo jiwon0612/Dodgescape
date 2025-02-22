@@ -1,3 +1,5 @@
+using System;
+using UnityEditor;
 using UnityEngine;
 
 public class OverlapDamageCaster : DamageCaster
@@ -37,6 +39,28 @@ public class OverlapDamageCaster : DamageCaster
 
         return cnt > 0;
     }
+
+#if UNITY_EDITOR
+
+    private void OnDrawGizmos()
+    {
+        switch (overlapType)
+        {
+            case OverlapType.Box:
+                Gizmos.color = Color.green; 
+                Gizmos.matrix = transform.localToWorldMatrix;
+                Gizmos.DrawWireCube(Vector3.zero, damageBoxSize);
+                Gizmos.color = Color.white;
+                break;
+            case OverlapType.Circle:
+                Gizmos.color = Color.green;
+                Gizmos.DrawWireSphere(transform.position, damageRadius);
+                Gizmos.color = Color.white;
+                break;
+        }
+    }
+
+#endif
 }
 
 public enum OverlapType
