@@ -7,7 +7,10 @@ using UnityEngine.InputSystem;
 public class PlayerInputSO : ScriptableObject, Console.IPlayerActions
 {
     public Vector2 MoveDirection { get; private set; }
-    
+
+    public event Action DashEvent;
+    public event Action InteratEvent;
+
     private Console _console;
     
     private void OnEnable()
@@ -28,5 +31,17 @@ public class PlayerInputSO : ScriptableObject, Console.IPlayerActions
     public void OnMove(InputAction.CallbackContext context)
     {
         MoveDirection = context.ReadValue<Vector2>();
+    }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            InteratEvent?.Invoke();
+    }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            DashEvent?.Invoke();
     }
 }
