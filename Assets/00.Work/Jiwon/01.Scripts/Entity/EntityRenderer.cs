@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EntityRenderer : MonoBehaviour, IEntityComp
+public class EntityRenderer : AnimatorCompo, IEntityComp
 {
     private Entity _entity;
     
