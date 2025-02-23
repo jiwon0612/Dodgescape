@@ -1,7 +1,7 @@
 using Unity.Behavior;
 using UnityEngine;
 
-public class MushroomMan : Enemy
+public class MushroomMan : BTEnemy
 {
     
 }

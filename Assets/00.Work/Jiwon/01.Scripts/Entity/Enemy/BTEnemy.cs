@@ -1,7 +1,7 @@
 using Unity.Behavior;
 using UnityEngine;
 
-public class Enemy : Entity
+public class BTEnemy : Entity
 {
     [field : SerializeField] public EntityFinderSO PlayerFinder { get; protected set; }
     
