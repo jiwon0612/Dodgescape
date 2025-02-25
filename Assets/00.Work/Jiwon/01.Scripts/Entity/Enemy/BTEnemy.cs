@@ -22,3 +22,10 @@ public class BTEnemy : Entity
         return default;
     }
 }
+
+[BlackboardEnum]
+public enum EnemyState
+{
+    PTAROL, CHASE, ATTACK, STUN, HIT, DEATH
+}
+    
