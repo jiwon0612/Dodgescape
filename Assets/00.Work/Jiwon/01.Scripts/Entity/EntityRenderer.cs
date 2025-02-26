@@ -3,15 +3,21 @@ using UnityEngine;
 public class EntityRenderer : AnimatorCompo, IEntityComp
 {
     private Entity _entity;
-    
+    private Rigidbody _rb;
+
     public void Initialize(Entity entity)
     {
-        _entity = entity;     
+        _entity = entity;
+        _rb = _entity.GetComponent<Rigidbody>();
     }
 
-    public void SetRotation(float x, float z)
+    public void SetRotation(Quaternion targetRotation, float rotationSpeed)
     {
-        float angle = Mathf.Atan2(x,z) * Mathf.Rad2Deg;
-        _entity.transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
+        Quaternion newRotation = Quaternion.RotateTowards(
+            _rb.rotation,
+            targetRotation,
+            rotationSpeed * Time.fixedDeltaTime
+        );
+        _rb.MoveRotation(newRotation);
     }
 }

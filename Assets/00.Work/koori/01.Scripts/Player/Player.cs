@@ -11,9 +11,7 @@ public class Player : Entity
     
     public float dashSpeed = 25f;
     public float dashDuration = 0.2f;
-    public float gravityMultiplier = 1.5f;
 
-    private EntityMover _mover;
     private EntityAnimator _animator;
 
     private StateMachine _stateMachine;
@@ -22,7 +20,6 @@ public class Player : Entity
     {
         base.AfterInit();
 
-        _mover = GetComp<EntityMover>();
         _animator = GetComp<EntityAnimator>();
 
         _stateMachine = new StateMachine(_playerFSM, this);

@@ -1,6 +1,7 @@
 using System;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EntityMover : MonoBehaviour, IEntityComp
 {
@@ -21,8 +22,6 @@ public class EntityMover : MonoBehaviour, IEntityComp
     {
         _entity = entity;
         _rbCompo = _entity.GetComponent<Rigidbody>();
-
-        _rbCompo.useGravity = false;
     }
 
     public void AddForceToEntity(Vector3 force, ForceMode mode = ForceMode.Impulse)
