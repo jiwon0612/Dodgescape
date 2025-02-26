@@ -29,7 +29,7 @@ public class BTEnemy : Entity
         _health.OnDeathEvent.AddListener(Death);
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         _health.OnHitEvent -= ApplyDamage;
         _health.OnDeathEvent.RemoveListener(Death);

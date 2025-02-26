@@ -1084,10 +1084,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0509c52faf82184f9c7d39d6e25d82b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 3
+  attackDistance: 5
   detectDistance: 10
   attackRangeName: AttackRange
   detectRangeName: DetectRange
+  _attackData: {fileID: 11400000, guid: 9776b301d62113042ac07bf296863b76, type: 2}
   caster: {fileID: 520410348}
 --- !u!1 &1399937697
 GameObject:
