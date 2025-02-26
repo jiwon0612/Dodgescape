@@ -60,4 +60,9 @@ public class Player : Entity
     {
         _stateMachine.currentState.Update();
     }
+
+    public override void ApplyDamage(float damage, Vector2 knockBack, float stunDuration)
+    {
+        
+    }
 }
