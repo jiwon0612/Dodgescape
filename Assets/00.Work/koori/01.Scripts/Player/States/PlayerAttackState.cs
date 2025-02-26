@@ -17,11 +17,20 @@ public class PlayerAttackState : EntityState
         _mover.StopImmediately(true);
         _mover.CanManualMove = false;
     }
+
+    public override void Update()
+    {
+        base.Update();
+        if (_isTriggerCall)
+        {
+            _player.ChangeState("Idle");
+        }
+    }   
+
     public override void Exit()
     {
         _mover.StopImmediately(true);
         _mover.CanManualMove = true;
-        _player.ChangeState("Idle");
 
         base.Exit();
     }

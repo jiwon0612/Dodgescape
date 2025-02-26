@@ -10,7 +10,11 @@ public class Player : Entity
     public EntityState CurrentState => _stateMachine.currentState;
     
     public float dashSpeed = 25f;
-    public float attackCool = 1.5f;
+    public float dashCool;
+    public float attackCool;
+
+    private float _nowDashCool;
+    private float _nowAttackCool;
 
     private EntityAnimator _animator;
 
@@ -32,12 +36,34 @@ public class Player : Entity
 
     private void HandleDashEvent()
     {
-        ChangeState("Dash");
+        if (AttemptDash())
+            ChangeState("Dash");
+    }
+
+    private bool AttemptDash()
+    {
+        if (Time.time > _nowDashCool)
+        {
+            _nowDashCool = Time.time + dashCool;
+            return true;
+        }
+        return false;
     }
 
     private void HandleAttackEvent()
     {
-        ChangeState("Attack");
+        if (AttemptAttack())
+            ChangeState("Attack");
+    }
+
+    private bool AttemptAttack()
+    {
+        if (Time.time > _nowAttackCool)
+        {
+            _nowAttackCool = Time.time + attackCool;
+            return true;
+        }
+        return false;
     }
 
     private void HandleAnimationEnd()

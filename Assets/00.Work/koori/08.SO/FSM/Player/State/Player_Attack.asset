@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6fa90270cbc89d4885d9d70dfe25897, type: 3}
   m_Name: Player_Attack
   m_EditorClassIdentifier: 
-  stateName: Move
-  className: PlayerMoveState
-  stateAnim: {fileID: 11400000, guid: c5ca5de2c1ae9134aba82a3e4a91b192, type: 2}
+  stateName: Attack
+  className: PlayerAttackState
+  stateAnim: {fileID: 11400000, guid: 1e24ac376abb63e4f8747d885e68c6da, type: 2}

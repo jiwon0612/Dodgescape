@@ -17,12 +17,20 @@ public class PlayerDashState : EntityState
         _mover.StopImmediately(true);
         _mover.CanManualMove = false;
     }
+    public override void Update()
+    {
+        base.Update();
+        if (_isTriggerCall)
+        {
+            _player.ChangeState("Idle");
+        }
+        _mover.AddForceToEntity(_player.transform.forward * _player.dashSpeed);
+    }
 
     public override void Exit()
     {
         _mover.StopImmediately(true);
         _mover.CanManualMove = true;
-        _player.ChangeState("Idle");
 
         base.Exit();
     }

@@ -24,11 +24,7 @@ public abstract class EntityState
 
     public virtual void Update()
     {
-        if (_isTriggerCall)
-        {
-            _isTriggerCall = false;
-            Exit();
-        }
+        
     }
     public virtual void FixedUpdate()
     {
