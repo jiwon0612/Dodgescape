@@ -10,6 +10,7 @@ public class PlayerInputSO : ScriptableObject, Console.IPlayerActions
 
     public event Action DashEvent;
     public event Action InteratEvent;
+    public event Action AttackEvent;
 
     private Console _console;
     
@@ -43,5 +44,11 @@ public class PlayerInputSO : ScriptableObject, Console.IPlayerActions
     {
         if (context.performed)
             DashEvent?.Invoke();
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            AttackEvent?.Invoke();
     }
 }
