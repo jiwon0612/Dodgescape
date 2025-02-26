@@ -10,7 +10,7 @@ public class Player : Entity
     public EntityState CurrentState => _stateMachine.currentState;
     
     public float dashSpeed = 25f;
-    public float dashDuration = 0.2f;
+    public float attackCool = 1.5f;
 
     private EntityAnimator _animator;
 
@@ -25,6 +25,7 @@ public class Player : Entity
         _stateMachine = new StateMachine(_playerFSM, this);
 
         PlayerInput.DashEvent += HandleDashEvent;
+        PlayerInput.AttackEvent += HandleAttackEvent;
 
         _animator.OnAnimationEnd += HandleAnimationEnd;
     }
@@ -32,6 +33,11 @@ public class Player : Entity
     private void HandleDashEvent()
     {
         ChangeState("Dash");
+    }
+
+    private void HandleAttackEvent()
+    {
+        ChangeState("Attack");
     }
 
     private void HandleAnimationEnd()

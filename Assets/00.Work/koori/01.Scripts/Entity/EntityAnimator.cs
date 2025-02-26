@@ -4,7 +4,6 @@ using UnityEngine;
 public class EntityAnimator : MonoBehaviour, IEntityComp
 {
     public event Action OnAnimationEnd;
-    //public event Action OnAttackTryEvent;
     protected Entity _entity;
 
     public void Initialize(Entity entity)
@@ -16,9 +15,4 @@ public class EntityAnimator : MonoBehaviour, IEntityComp
     {
         OnAnimationEnd?.Invoke();
     }
-
-    //protected virtual void AttackTry()
-    //{
-    //    OnAttackTryEvent?.Invoke();   
-    //}
 }
