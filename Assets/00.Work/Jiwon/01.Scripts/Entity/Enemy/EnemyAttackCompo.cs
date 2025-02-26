@@ -1,12 +1,14 @@
 using System;
 using UnityEngine;
 
-public class EnemyAttackCompo : MonoBehaviour, IAfterInit
+public class EnemyAttackCompo : MonoBehaviour, IEntityComp
 {
     public float attackDistance;
     public float detectDistance;
     
     [SerializeField] private string attackRangeName, detectRangeName;
+
+    [SerializeField] private AttackDataSO _attackData;
     
     public DamageCaster caster;
 
@@ -20,10 +22,16 @@ public class EnemyAttackCompo : MonoBehaviour, IAfterInit
         caster.InitCaster(_btEnemy);
     }
 
-    public void AfterInit()
+    private void Start()
     {
-        _btEnemy.GetBlackboardVariable<float>(attackRangeName).Value = attackDistance;
         _btEnemy.GetBlackboardVariable<float>(detectRangeName).Value = detectDistance;
+        _btEnemy.GetBlackboardVariable<float>(attackRangeName).Value = attackDistance;
+        
+    }
+
+    public void Attack()
+    {
+        caster.CastDamage(_attackData.damage, _attackData.attackPower);
     }
 
 #if UNITY_EDITOR

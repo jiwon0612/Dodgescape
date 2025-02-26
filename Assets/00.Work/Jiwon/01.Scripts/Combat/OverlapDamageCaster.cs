@@ -31,11 +31,11 @@ public class OverlapDamageCaster : DamageCaster
         {
             Vector3 direction = (_hitResults[i].transform.position - _entity.transform.position).normalized;
             
-            Vector2 knockBack = new Vector2(direction.x, direction.y) * knockBackPower;
+            Vector2 knockBack = new Vector2(direction.x, direction.z) * knockBackPower;
             
             if (_hitResults[i].TryGetComponent(out EntityHealth health))
             {
-                health.TakeDamage(damage, knockBack, .5f);
+                health.TakeDamage(damage, knockBack, .5f, _entity);
             }
         }
 

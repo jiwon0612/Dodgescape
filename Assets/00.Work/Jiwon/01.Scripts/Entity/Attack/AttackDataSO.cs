@@ -1,8 +1,9 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AttackData", menuName = "Scriptable Objects/AttackData")]
+[CreateAssetMenu(fileName = "AttackData", menuName = "SO/AttData")]
 public class AttackDataSO : ScriptableObject
 {
+    public float damage;
     public float movement;
     public float attackPower;
 }

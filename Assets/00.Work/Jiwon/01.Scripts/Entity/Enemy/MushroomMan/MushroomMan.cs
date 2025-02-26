@@ -5,7 +5,33 @@ using UnityEngine;
 public class MushroomMan : BTEnemy
 {
     private EnemyStateChangeEvent _stateChannel;
-    
+    private EntityAnimationTrigger _animationTrigger;
+    private EnemyAttackCompo _attackCompo;
+
+    protected override void InitComp()
+    {
+        base.InitComp();
+        _animationTrigger = GetComp<EntityAnimationTrigger>();
+        _attackCompo = GetComp<EnemyAttackCompo>();
+    }
+
+    protected override void AfterInit()
+    {
+        base.AfterInit();
+        _animationTrigger.OnAttackTrigger += HandleAttack;
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        _animationTrigger.OnAttackTrigger -= HandleAttack;
+    }
+
+    private void HandleAttack()
+    {
+        
+    }
+
     private void Start()
     {
         BlackboardVariable<EnemyStateChangeEvent> stateChannel =
