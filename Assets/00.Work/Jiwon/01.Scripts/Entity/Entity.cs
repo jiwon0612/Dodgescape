@@ -47,5 +47,6 @@ public abstract class Entity : MonoBehaviour
         
         return default;
     }
-
+    
+    public abstract void ApplyDamage(float damage, Vector2 knockBack,float stunDuration);
 }

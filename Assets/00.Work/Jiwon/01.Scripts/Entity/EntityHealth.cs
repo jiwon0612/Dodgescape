@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Health : MonoBehaviour,IEntityComp
+public class EntityHealth : MonoBehaviour,IEntityComp
 {
     private Entity _entity;
     
@@ -10,8 +10,9 @@ public class Health : MonoBehaviour,IEntityComp
     private float _currentHealth;
     
     public UnityEvent OnDeathEvent;
-    public UnityEvent<float> OnHitEvent;
+    public event Action<float, Vector2, float> OnHitEvent;
     
+    public bool IsCanHit { get; set; }
     
     public void Initialize(Entity entity)
     {
@@ -24,9 +25,11 @@ public class Health : MonoBehaviour,IEntityComp
         _currentHealth = maxHealth;
     }
 
-    public void TakeDamage(float damage, Vector3 originPoint, float stunDuration)
+    public void TakeDamage(float damage, Vector2 knockBack, float stunDuration)
     {
+        if (!IsCanHit) return;
+        
         _currentHealth -= damage;
-        OnHitEvent?.Invoke(_currentHealth);
+        OnHitEvent?.Invoke(damage, knockBack, stunDuration);
     }
 }

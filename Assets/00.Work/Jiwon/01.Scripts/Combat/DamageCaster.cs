@@ -12,5 +12,5 @@ public abstract class DamageCaster : MonoBehaviour
         _entity = entity;
     }
 
-    public abstract bool CastDamage(float damage, Vector2 knockBack);
+    public abstract bool CastDamage(float damage, float knockBackPower);
 }
