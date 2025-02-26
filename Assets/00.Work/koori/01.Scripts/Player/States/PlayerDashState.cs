@@ -4,11 +4,13 @@ public class PlayerDashState : EntityState
 {
     private Player _player;
     private EntityMover _mover;
+    private EntityHealth _health;
 
     public PlayerDashState(Entity entity, AnimParamSO animParam) : base(entity, animParam)
     {
         _player = entity as Player;
         _mover = entity.GetComp<EntityMover>();
+        _health = entity.GetComp<EntityHealth>();
     }
 
     public override void Enter()
@@ -16,6 +18,7 @@ public class PlayerDashState : EntityState
         base.Enter();
         _mover.StopImmediately(true);
         _mover.CanManualMove = false;
+        _health.IsCanHit = false;
     }
     public override void Update()
     {
@@ -31,6 +34,7 @@ public class PlayerDashState : EntityState
     {
         _mover.StopImmediately(true);
         _mover.CanManualMove = true;
+        _health.IsCanHit = true;
 
         base.Exit();
     }

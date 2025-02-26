@@ -16,6 +16,9 @@ public class PlayerAttackState : EntityState
         base.Enter();
         _mover.StopImmediately(true);
         _mover.CanManualMove = false;
+
+        AttackEvent attackEvent = new AttackEvent(true);
+        _player.PlayerEventChannel.RaiseEvent(attackEvent);
     }
 
     public override void Update()
@@ -31,6 +34,9 @@ public class PlayerAttackState : EntityState
     {
         _mover.StopImmediately(true);
         _mover.CanManualMove = true;
+
+        AttackEvent attackEvent = new AttackEvent(false);
+        _player.PlayerEventChannel.RaiseEvent(attackEvent);
 
         base.Exit();
     }

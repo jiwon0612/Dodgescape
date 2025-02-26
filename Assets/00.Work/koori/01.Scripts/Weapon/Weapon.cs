@@ -5,14 +5,23 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] private AttackDataSO _attackData;
     [SerializeField] private EntityFinderSO _entityFinder;
+    [SerializeField] private GameEventChannelSO _playerEventChannel;
 
     private List<int> hitEntities = new List<int>();
+
+    private bool _canAttack = false;
+
+    private void OnEnable()
+    {
+        _playerEventChannel.AddListener<AttackEvent>(OnAttackEvent);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out EntityHealth entity))
         {
             if (hitEntities.Contains(entity.GetInstanceID())) return;
+            if (!_canAttack) return;
 
             Vector3 dir = (entity.transform.position - transform.position).normalized;
             Vector2 knockBack = new Vector2(dir.x, dir.z) * _attackData.attackPower;
@@ -22,8 +31,16 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void OnEndAttack()
+    private void OnDisable()
     {
-        hitEntities.Clear();
+        _playerEventChannel.RemoveListener<AttackEvent>(OnAttackEvent);
+    }
+
+    private void OnAttackEvent(AttackEvent attackEvent)
+    {
+        _canAttack = attackEvent.isAttacking;
+
+        if (attackEvent.isAttacking)
+            hitEntities.Clear();
     }
 }

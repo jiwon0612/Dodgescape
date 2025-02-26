@@ -11,6 +11,7 @@ public class PlayerInputSO : ScriptableObject, Console.IPlayerActions
     public event Action DashEvent;
     public event Action InteratEvent;
     public event Action AttackEvent;
+    public event Action DodgeEvent;
 
     private Console _console;
     
@@ -50,5 +51,11 @@ public class PlayerInputSO : ScriptableObject, Console.IPlayerActions
     {
         if (context.performed)
             AttackEvent?.Invoke();
+    }
+
+    public void OnDodge(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            DodgeEvent?.Invoke();
     }
 }

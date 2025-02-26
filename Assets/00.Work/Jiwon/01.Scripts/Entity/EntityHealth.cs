@@ -14,7 +14,7 @@ public class EntityHealth : MonoBehaviour,IEntityComp
     public event Action<float, Vector2, float> OnHitEvent;
     
     public bool IsCanHit { get; set; }
-    public bool IsEvasion { get; protected set; }
+    public bool IsEvasion { get;  set; }
     
     public void Initialize(Entity entity)
     {

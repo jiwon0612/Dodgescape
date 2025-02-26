@@ -8,15 +8,21 @@ public class Player : Entity
     [field: SerializeField] public PlayerInputSO PlayerInput { get; private set; }
 
     public EntityState CurrentState => _stateMachine.currentState;
-    
+
+    public GameEventChannelSO PlayerEventChannel;
+
+    public float dodgeSpeed = 15f;
     public float dashSpeed = 25f;
+    public float dodgeCool;
     public float dashCool;
     public float attackCool;
 
+    private float _nowDodgeCool;
     private float _nowDashCool;
     private float _nowAttackCool;
 
     private EntityAnimator _animator;
+    private EntityMover _mover;
 
     private StateMachine _stateMachine;
 
@@ -26,12 +32,30 @@ public class Player : Entity
 
         _animator = GetComp<EntityAnimator>();
 
+        _mover = GetComp<EntityMover>();
+
         _stateMachine = new StateMachine(_playerFSM, this);
 
         PlayerInput.DashEvent += HandleDashEvent;
         PlayerInput.AttackEvent += HandleAttackEvent;
+        PlayerInput.DodgeEvent += HandleDodgeEvent;
 
         _animator.OnAnimationEnd += HandleAnimationEnd;
+    }
+    private void HandleDodgeEvent()
+    {
+        if(AttemptDodge())
+            ChangeState("Dodge");
+    }
+
+    private bool AttemptDodge()
+    {
+        if (Time.time > _nowDodgeCool)
+        {
+            _nowDodgeCool = Time.time + dodgeCool;
+            return true;
+        }
+        return false;
     }
 
     private void HandleDashEvent()
@@ -66,6 +90,10 @@ public class Player : Entity
         return false;
     }
 
+    private void HandleInteractEvent()
+    {
+    }
+
     private void HandleAnimationEnd()
     {
         CurrentState.AnimationEndTrigger();
@@ -95,6 +123,6 @@ public class Player : Entity
 
     public override void ApplyDamage(float damage, Vector2 knockBack, float stunDuration)
     {
-        
+        _mover.KnockBack(knockBack, stunDuration);
     }
 }
