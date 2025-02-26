@@ -1,12 +1,24 @@
-using System;
+using Unity.Behavior;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Enemy : Entity
 {
-    [field : SerializeField] public float DetectionDistance {get; private set; }
+    [field : SerializeField] public EntityFinderSO PlayerFinder { get; protected set; }
     
-    private NavMeshAgent agent;
+    protected BehaviorGraphAgent _btAgent;
 
-    
+    protected override void InitComp()
+    {
+        base.InitComp();
+        _btAgent = GetComponent<BehaviorGraphAgent>();
+    }
+
+    public BlackboardVariable<T> GetBlackboardVariable<T>(string key)
+    {
+        if (_btAgent.GetVariable(key, out BlackboardVariable<T> result))
+        {
+            return result;
+        }
+        return default;
+    }
 }

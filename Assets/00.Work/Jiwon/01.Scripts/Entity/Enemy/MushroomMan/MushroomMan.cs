@@ -1,17 +1,13 @@
-using UnityEngine;
+using Unity.Behavior;
 using UnityEngine;
 
-public class MushroomMan : MonoBehaviour
+public class MushroomMan : Enemy
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    
+}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+[BlackboardEnum]
+public enum MushroomManState
+{
+    PTAROL, CHASE, ATTACK, STUN, HIT, DEATH
 }

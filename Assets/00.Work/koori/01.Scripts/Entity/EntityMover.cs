@@ -6,30 +6,30 @@ using UnityEngine.Events;
 public class EntityMover : MonoBehaviour, IEntityComp
 {
     [Header("Move values")]
-    [SerializeField] private float _moveSpeed = 5f;
+    [SerializeField] protected float _moveSpeed = 5f;
 
     public Vector3 Velocity => _rbCompo.linearVelocity;
 
     public float SpeedMultiplier { get; set; } = 1f;
     public bool CanManualMove { get; set; } = true;
 
-    private Entity _entity;
-    private Rigidbody _rbCompo;
+    protected Entity _entity;
+    protected Rigidbody _rbCompo;
 
-    private Vector3 _movement;
+    protected Vector3 _movement;
 
-    public void Initialize(Entity entity)
+    public virtual void Initialize(Entity entity)
     {
         _entity = entity;
         _rbCompo = _entity.GetComponent<Rigidbody>();
     }
 
-    public void AddForceToEntity(Vector3 force, ForceMode mode = ForceMode.Impulse)
+    public virtual void AddForceToEntity(Vector3 force, ForceMode mode = ForceMode.Impulse)
     {
         _rbCompo.AddForce(force, mode);
     }
 
-    public void StopImmediately(bool isYAxisToo = false)
+    public virtual void StopImmediately(bool isYAxisToo = false)
     {
         if (isYAxisToo)
             _rbCompo.linearVelocity = Vector3.zero;
@@ -38,7 +38,7 @@ public class EntityMover : MonoBehaviour, IEntityComp
         _movement = Vector3.zero;
     }
 
-    public void KnockBack(Vector2 force, float time)
+    public virtual void KnockBack(Vector2 force, float time)
     {
         CanManualMove = false;
         StopImmediately(true);
@@ -46,17 +46,17 @@ public class EntityMover : MonoBehaviour, IEntityComp
         DOVirtual.DelayedCall(time, () => CanManualMove = true);
     }
 
-    public void SetMovement(Vector3 movement)
+    public virtual void SetMovement(Vector3 movement)
     {
         _movement = movement;
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         MoveCharacter();
     }
 
-    private void MoveCharacter()
+    protected virtual void MoveCharacter()
     {
         if (CanManualMove)
         {
