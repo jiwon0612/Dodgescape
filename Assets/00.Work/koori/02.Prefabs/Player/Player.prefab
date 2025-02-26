@@ -1109,7 +1109,9 @@ MonoBehaviour:
   _playerFSM: {fileID: 11400000, guid: d72775c85c39c1043845fb65d33fbd2a, type: 2}
   <PlayerInput>k__BackingField: {fileID: 11400000, guid: a06db8773ea9aa94ab3b6a4e9892891a, type: 2}
   PlayerEventChannel: {fileID: 11400000, guid: ee3409f018b11cf43a02b02fa0e8391e, type: 2}
-  dashSpeed: 55
+  dodgeSpeed: 15
+  dashSpeed: 30
+  dodgeCool: 1
   dashCool: 1.5
   attackCool: 1.3
 --- !u!114 &1845438239917514123
@@ -1124,7 +1126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7d67e17bb894fd4689d54bc65c6e842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 100
   OnDeathEvent:
     m_PersistentCalls:
       m_Calls: []
