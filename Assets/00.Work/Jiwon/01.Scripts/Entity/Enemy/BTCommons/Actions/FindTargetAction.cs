@@ -13,7 +13,7 @@ public partial class FindTargetAction : Action
 
     protected override Status OnStart()
     {
-        //Target.Value = Self.Value.PlayerFinder.target.transform;
+        Target.Value = Self.Value.PlayerFinder.target.transform;
         Debug.Assert(Target.Value != null, $"Target is null {Self.Value.gameObject.name}");
         return Status.Success;
     }

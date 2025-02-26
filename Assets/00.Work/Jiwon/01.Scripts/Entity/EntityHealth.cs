@@ -20,6 +20,8 @@ public class EntityHealth : MonoBehaviour,IEntityComp
     {
         _entity = entity;
         _currentHealth = maxHealth;
+        IsCanHit = true;
+        IsEvasion = false;
     }
 
     public void Reset()

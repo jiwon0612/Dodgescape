@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 15
   movement: 0
-  attackPower: 20
-  stunDuration: 1
+  attackPower: 8
+  stunDuration: 0.5
