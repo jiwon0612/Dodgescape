@@ -16,7 +16,7 @@ public class OverlapDamageCaster : DamageCaster
         _hitResults = new Collider[maxHitCount];
     }
 
-    public override bool CastDamage(float damage, Vector2 knockBack)
+    public override bool CastDamage(float damage, float knockBackPower)
     {
         int cnt = overlapType switch
         {
@@ -30,10 +30,12 @@ public class OverlapDamageCaster : DamageCaster
         for (int i = 0; i < cnt; i++)
         {
             Vector3 direction = (_hitResults[i].transform.position - _entity.transform.position).normalized;
-
+            
+            Vector2 knockBack = new Vector2(direction.x, direction.y) * knockBackPower;
+            
             if (_hitResults[i].TryGetComponent(out Health health))
             {
-                health.TakeDamage(damage, _entity.transform.position, 0f);
+                health.TakeDamage(damage, knockBack, 0f);
             }
         }
 

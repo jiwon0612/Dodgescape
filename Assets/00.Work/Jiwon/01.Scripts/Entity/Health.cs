@@ -24,7 +24,7 @@ public class Health : MonoBehaviour,IEntityComp
         _currentHealth = maxHealth;
     }
 
-    public void TakeDamage(float damage, Vector3 originPoint, float stunDuration)
+    public void TakeDamage(float damage, Vector2 knockBack, float stunDuration)
     {
         _currentHealth -= damage;
         OnHitEvent?.Invoke(_currentHealth);
