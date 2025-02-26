@@ -33,9 +33,9 @@ public class OverlapDamageCaster : DamageCaster
             
             Vector2 knockBack = new Vector2(direction.x, direction.y) * knockBackPower;
             
-            if (_hitResults[i].TryGetComponent(out Health health))
+            if (_hitResults[i].TryGetComponent(out EntityHealth health))
             {
-                health.TakeDamage(damage, knockBack, 0f);
+                health.TakeDamage(damage, knockBack, .5f);
             }
         }
 
