@@ -747,6 +747,9 @@ MonoBehaviour:
   OnDeathEvent:
     m_PersistentCalls:
       m_Calls: []
+  OnEvasionEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1353838811
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,7 +1087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0509c52faf82184f9c7d39d6e25d82b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 5
+  attackDistance: 2.5
   detectDistance: 10
   attackRangeName: AttackRange
   detectRangeName: DetectRange
