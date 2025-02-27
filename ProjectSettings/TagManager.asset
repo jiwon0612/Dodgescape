@@ -14,9 +14,9 @@ TagManager:
   - Deco
   - Dashable
   - Player
-  - 
-  - 
-  - 
+  - Enemy
+  - Bullet
+  - Ground
   - 
   - 
   - 

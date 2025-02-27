@@ -50,5 +50,6 @@ public class MushroomMan : BTEnemy
     {
         base.Death();
         _stateChannel.SendEventMessage(EnemyState.DEATH);
+        _health.IsCanHit = false;
     }
 }

@@ -24,6 +24,7 @@ public class Player : Entity
     private EntityAnimator _animator;
     private EntityMover _mover;
     private EntityHealth _health;
+    private EntityEvasionSkillCompo _skillCompo;
 
     private StateMachine _stateMachine;
 
@@ -34,6 +35,7 @@ public class Player : Entity
         _animator = GetComp<EntityAnimator>();
         _health = GetComp<EntityHealth>();
         _mover = GetComp<EntityMover>();
+        _skillCompo = GetComp<EntityEvasionSkillCompo>();
 
         _stateMachine = new StateMachine(_playerFSM, this);
 
@@ -48,7 +50,7 @@ public class Player : Entity
 
     private void HandleEvasionEvent(Entity dealer)
     {
-        //컴포 따로 만드는게 좋으니까 만들면 이거 지워
+        _skillCompo.activeSkill.UseSkill(dealer);
     }
 
     private void HandleDodgeEvent()

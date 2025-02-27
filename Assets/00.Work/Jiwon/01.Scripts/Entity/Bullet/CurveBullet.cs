@@ -16,10 +16,12 @@ public class CurveBullet : Bullet
         
         Vector2 randomVector = UnityEngine.Random.insideUnitCircle;
         point = dealer.transform.
-            TransformPoint(new Vector3(randomVector.x,randomVector.y,1) * curveRadius);
+            TransformPoint(new Vector3(randomVector.x,Mathf.Abs(randomVector.y),-1) * curveRadius);
         
         startPos = dealer.transform.position;
         endTrm = target.transform;
+        
+        transform.position = startPos;
     }
 
     private void FixedUpdate()
@@ -31,6 +33,6 @@ public class CurveBullet : Bullet
         Vector3 p2 = Vector3.Lerp(point, endTrm.position, t);
         Vector3 position = Vector3.Lerp(p1, p2, t);
         
-        transform.position = position;
+        _rbCompo.MovePosition(position);
     }
 }
