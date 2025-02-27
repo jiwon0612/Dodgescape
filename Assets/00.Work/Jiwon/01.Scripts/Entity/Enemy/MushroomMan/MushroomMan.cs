@@ -29,7 +29,7 @@ public class MushroomMan : BTEnemy
 
     private void HandleAttack()
     {
-        
+        _attackCompo.Attack();
     }
 
     private void Start()

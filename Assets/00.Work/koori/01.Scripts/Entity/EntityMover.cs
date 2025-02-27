@@ -1,7 +1,5 @@
-using System;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class EntityMover : MonoBehaviour, IEntityComp
 {
@@ -17,6 +15,7 @@ public class EntityMover : MonoBehaviour, IEntityComp
     protected Rigidbody _rbCompo;
 
     protected Vector3 _movement;
+    public Vector3 velocity;
 
     public virtual void Initialize(Entity entity)
     {
@@ -53,6 +52,7 @@ public class EntityMover : MonoBehaviour, IEntityComp
 
     protected virtual void FixedUpdate()
     {
+        velocity = _rbCompo.linearVelocity;
         MoveCharacter();
     }
 

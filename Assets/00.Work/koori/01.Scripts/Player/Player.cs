@@ -23,6 +23,7 @@ public class Player : Entity
 
     private EntityAnimator _animator;
     private EntityMover _mover;
+    private EntityHealth _health;
 
     private StateMachine _stateMachine;
 
@@ -31,7 +32,7 @@ public class Player : Entity
         base.AfterInit();
 
         _animator = GetComp<EntityAnimator>();
-
+        _health = GetComp<EntityHealth>();
         _mover = GetComp<EntityMover>();
 
         _stateMachine = new StateMachine(_playerFSM, this);
@@ -41,7 +42,15 @@ public class Player : Entity
         PlayerInput.DodgeEvent += HandleDodgeEvent;
 
         _animator.OnAnimationEnd += HandleAnimationEnd;
+        _health.OnHitEvent += ApplyDamage;
+        _health.OnEvasionEvent.AddListener(HandleEvasionEvent); //회피기믹 여따 구도하십셔
     }
+
+    private void HandleEvasionEvent(Entity dealer)
+    {
+        //컴포 따로 만드는게 좋으니까 만들면 이거 지워
+    }
+
     private void HandleDodgeEvent()
     {
         if(AttemptDodge())
@@ -102,7 +111,13 @@ public class Player : Entity
     private void OnDestroy()
     {
         PlayerInput.DashEvent -= HandleDashEvent;
-        GetComp<EntityAnimator>().OnAnimationEnd -= HandleAnimationEnd;
+        PlayerInput.AttackEvent -= HandleAttackEvent;
+        PlayerInput.DodgeEvent -= HandleDodgeEvent;
+        
+        _animator.OnAnimationEnd -= HandleAnimationEnd;
+        
+        _health.OnHitEvent -= ApplyDamage;
+        _health.OnEvasionEvent.RemoveListener(HandleEvasionEvent);
     }
 
     private void Start()
