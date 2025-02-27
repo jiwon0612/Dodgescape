@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EntityHealth : MonoBehaviour,IEntityComp
+public class EntityHealth : MonoBehaviour ,IEntityComp
 {
     private Entity _entity;
     
@@ -10,7 +10,7 @@ public class EntityHealth : MonoBehaviour,IEntityComp
     private float _currentHealth;
     
     public UnityEvent OnDeathEvent;
-    public UnityEvent OnEvasionEvent;
+    public UnityEvent<Entity> OnEvasionEvent;
     public event Action<float, Vector2, float> OnHitEvent;
     
     public bool IsCanHit { get; set; }
@@ -35,7 +35,7 @@ public class EntityHealth : MonoBehaviour,IEntityComp
 
         if (IsEvasion)
         {
-            OnEvasionEvent?.Invoke();
+            OnEvasionEvent?.Invoke(dealer);
             return;
         }
         

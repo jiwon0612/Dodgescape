@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class PlayerDodgeState : EntityState
 {
     private Player _player;
@@ -17,7 +19,12 @@ public class PlayerDodgeState : EntityState
         _mover.StopImmediately(true);
         _mover.CanManualMove = false;
         _health.IsEvasion = true;
-        _health.IsCanHit = false;
+        
+        if (_player.PlayerInput.MoveDirection == Vector2.zero)
+            _mover.AddForceToEntity(_player.transform.right * _player.dodgeSpeed);
+        else
+            _mover.AddForceToEntity(new Vector3(_player.PlayerInput.MoveDirection.x,
+                0,_player.PlayerInput.MoveDirection.y) * _player.dodgeSpeed);
     }
 
     public override void Update()
@@ -27,8 +34,6 @@ public class PlayerDodgeState : EntityState
         {
             _player.ChangeState("Idle");
         }
-
-        _mover.KnockBack(-_player.transform.forward * _player.dodgeSpeed, 0.1f);
     }
 
     public override void Exit()
@@ -36,7 +41,6 @@ public class PlayerDodgeState : EntityState
         _mover.StopImmediately(true);
         _mover.CanManualMove = true;
         _health.IsEvasion = false;
-        _health.IsCanHit = true;
         base.Exit();
     }
 }

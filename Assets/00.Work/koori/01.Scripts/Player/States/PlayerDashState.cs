@@ -16,9 +16,10 @@ public class PlayerDashState : EntityState
     public override void Enter()
     {
         base.Enter();
-        _mover.StopImmediately(true);
+        _mover.StopImmediately();
         _mover.CanManualMove = false;
         _health.IsCanHit = false;
+        _mover.AddForceToEntity(_player.transform.forward * _player.dashSpeed);
     }
     public override void Update()
     {
@@ -27,7 +28,6 @@ public class PlayerDashState : EntityState
         {
             _player.ChangeState("Idle");
         }
-        _mover.AddForceToEntity(_player.transform.forward * _player.dashSpeed);
     }
 
     public override void Exit()

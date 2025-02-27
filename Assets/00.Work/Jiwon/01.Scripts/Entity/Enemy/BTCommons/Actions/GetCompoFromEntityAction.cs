@@ -17,7 +17,8 @@ public partial class GetCompoFromEntityAction : Action
 
         SetVariableToBT(enemy, "Mover", enemy.GetComp<EntityNavMeshMover>(true));
         SetVariableToBT(enemy, "MainAnimator", enemy.GetComponentInChildren<Animator>());
-        SetVariableToBT(enemy, "AnimationTrigger", enemy.GetComponentInChildren<EntityAnimationTrigger>());
+        SetVariableToBT(enemy, "AnimationTrigger", enemy.GetComp<EntityAnimationTrigger>());
+        SetVariableToBT(enemy, "AttackCompo", enemy.GetComp<EnemyAttackCompo>());
         
         return Status.Success;
     }

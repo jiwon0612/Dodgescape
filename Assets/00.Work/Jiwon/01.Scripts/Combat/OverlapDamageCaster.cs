@@ -16,7 +16,7 @@ public class OverlapDamageCaster : DamageCaster
         _hitResults = new Collider[maxHitCount];
     }
 
-    public override bool CastDamage(float damage, float knockBackPower)
+    public override bool CastDamage(float damage, float knockBackPower, float duration)
     {
         int cnt = overlapType switch
         {
@@ -35,7 +35,7 @@ public class OverlapDamageCaster : DamageCaster
             
             if (_hitResults[i].TryGetComponent(out EntityHealth health))
             {
-                health.TakeDamage(damage, knockBack, .5f, _entity);
+                health.TakeDamage(damage, knockBack,duration, _entity);
             }
         }
 

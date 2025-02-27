@@ -31,7 +31,7 @@ public class EnemyAttackCompo : MonoBehaviour, IEntityComp
 
     public void Attack()
     {
-        caster.CastDamage(_attackData.damage, _attackData.attackPower);
+        caster.CastDamage(_attackData.damage, _attackData.attackPower, _attackData.stunDuration);
     }
 
 #if UNITY_EDITOR
