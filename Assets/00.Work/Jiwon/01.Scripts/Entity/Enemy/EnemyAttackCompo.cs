@@ -8,13 +8,13 @@ public class EnemyAttackCompo : MonoBehaviour, IEntityComp
     
     [SerializeField] private string attackRangeName, detectRangeName;
 
-    [SerializeField] private AttackDataSO _attackData;
+    [SerializeField] private AttackDataSO attackData;
     
     public DamageCaster caster;
 
     private BTEnemy _btEnemy;
     
-    public void Initialize(Entity entity)
+    public virtual void Initialize(Entity entity)
     {
         _btEnemy = entity as BTEnemy;
         Debug.Assert(_btEnemy != null, $"is Not BTEnemy{entity.gameObject.name}");
@@ -31,7 +31,7 @@ public class EnemyAttackCompo : MonoBehaviour, IEntityComp
 
     public void Attack()
     {
-        caster.CastDamage(_attackData.damage, _attackData.attackPower, _attackData.stunDuration);
+        caster.CastDamage(attackData.damage, attackData.attackPower, attackData.stunDuration);
     }
 
 #if UNITY_EDITOR
