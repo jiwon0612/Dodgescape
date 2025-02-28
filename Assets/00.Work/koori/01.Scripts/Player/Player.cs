@@ -42,6 +42,7 @@ public class Player : Entity
         PlayerInput.DashEvent += HandleDashEvent;
         PlayerInput.AttackEvent += HandleAttackEvent;
         PlayerInput.DodgeEvent += HandleDodgeEvent;
+        PlayerInput.InteratEvent += HandleInteractEvent;
 
         _animator.OnAnimationEnd += HandleAnimationEnd;
         _health.OnHitEvent += ApplyDamage;
@@ -103,6 +104,7 @@ public class Player : Entity
 
     private void HandleInteractEvent()
     {
+        ChangeState("Interact");
     }
 
     private void HandleAnimationEnd()
