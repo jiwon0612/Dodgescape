@@ -14,6 +14,7 @@ public class EntityNavMeshMover : EntityMover
     {
         base.Initialize(entity);
         _navMeshAgent = entity.GetComponent<NavMeshAgent>();
+        _navMeshAgent.speed = _moveSpeed;
     }
 
     public override void KnockBack(Vector2 force, float time)

@@ -12,7 +12,7 @@ public abstract class Bullet : MonoBehaviour
     
     protected Rigidbody _rbCompo;
     protected DamageCaster _damageCaster;
-
+    
     public bool IsFire { get; protected set; }
     
     private void Awake()
@@ -23,13 +23,13 @@ public abstract class Bullet : MonoBehaviour
 
     public virtual void InitAndFire(Entity dealer, Vector3 direction)
     {
-        _rbCompo.excludeLayers = dealer.gameObject.layer;
+        _damageCaster.InitCaster(dealer);
         IsFire = true;
     }
 
     public virtual void InitAndFire(Entity dealer, Transform target)
     {
-        _rbCompo.excludeLayers = dealer.gameObject.layer;
+        _damageCaster.InitCaster(dealer);
         IsFire = true;
     }
 

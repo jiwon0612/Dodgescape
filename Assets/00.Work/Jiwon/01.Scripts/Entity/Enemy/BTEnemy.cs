@@ -52,6 +52,7 @@ public class BTEnemy : Entity
     public virtual void Death()
     {
         IsDead = true;
+        _health.IsCanHit = false;
     }
 }
 
