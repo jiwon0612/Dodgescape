@@ -79,7 +79,7 @@ MonoBehaviour:
   detectDistance: 8
   attackRangeName: AttackRange
   detectRangeName: DetectRange
-  _attackData: {fileID: 11400000, guid: 9776b301d62113042ac07bf296863b76, type: 2}
+  attackData: {fileID: 11400000, guid: 9776b301d62113042ac07bf296863b76, type: 2}
   caster: {fileID: 5564107388562812097}
 --- !u!1 &439667903746065280
 GameObject:
@@ -541,7 +541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7d67e17bb894fd4689d54bc65c6e842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 55
   OnDeathEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1727,7 +1727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2784864e421b6bb4a8aad8ad2f7fc7bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
+  _moveSpeed: 2.5
   velocity: {x: 0, y: 0, z: 0}
   toleranceValue: 0.5
 --- !u!1 &8518438190969601460

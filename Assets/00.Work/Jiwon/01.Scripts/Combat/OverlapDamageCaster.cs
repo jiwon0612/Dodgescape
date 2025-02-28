@@ -35,6 +35,7 @@ public class OverlapDamageCaster : DamageCaster
             
             if (_hitResults[i].TryGetComponent(out EntityHealth health))
             {
+                Debug.Log(_hitResults[i].name);
                 health.TakeDamage(damage, knockBack,duration, _entity);
             }
         }
