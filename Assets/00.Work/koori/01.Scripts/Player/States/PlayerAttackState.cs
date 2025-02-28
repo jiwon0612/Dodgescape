@@ -17,7 +17,8 @@ public class PlayerAttackState : EntityState
         _mover.StopImmediately(true);
         _mover.CanManualMove = false;
 
-        AttackEvent attackEvent = new AttackEvent(true);
+        AttackEvent attackEvent = PlayerEvent.AttackEvent;
+        attackEvent.isAttacking = true;
         _player.PlayerEventChannel.RaiseEvent(attackEvent);
     }
 
@@ -35,7 +36,8 @@ public class PlayerAttackState : EntityState
         _mover.StopImmediately(true);
         _mover.CanManualMove = true;
 
-        AttackEvent attackEvent = new AttackEvent(false);
+        AttackEvent attackEvent = PlayerEvent.AttackEvent;
+        attackEvent.isAttacking = false;
         _player.PlayerEventChannel.RaiseEvent(attackEvent);
 
         base.Exit();

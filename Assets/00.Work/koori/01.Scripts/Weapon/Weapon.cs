@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -7,6 +8,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private AttackDataSO _attackData;
     [SerializeField] private EntityFinderSO _entityFinder;
     [SerializeField] private GameEventChannelSO _playerEventChannel;
+    [SerializeField] private GameEventChannelSO _cameraShakeChannel;
 
     private List<int> hitEntities = new List<int>();
     private ParticleSystem _particle;
