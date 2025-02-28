@@ -6,7 +6,6 @@ public enum InteractType
     Talk,
 }
 public interface IInteractable
-{
-    public InteractType InteractType { get; }
+{ 
     public void Interact();
 }
