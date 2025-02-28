@@ -1,9 +1,9 @@
 public class AttackEvent : GameEvent
 {
     public bool isAttacking;
+}
 
-    public AttackEvent(bool isAttacking)
-    {
-        this.isAttacking = isAttacking;
-    }
+public static class PlayerEvent
+{
+    public static AttackEvent AttackEvent = new AttackEvent();
 }

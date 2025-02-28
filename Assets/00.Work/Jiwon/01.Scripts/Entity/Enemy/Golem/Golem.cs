@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Golem : BTEnemy
 {
+    [field : SerializeField] public GameEventChannelSO cameraChannel { get;private set; }
+    
     private BlackboardVariable<GolemState> _state;
     
     private GolemStateChangeEvent _stateChannel;
