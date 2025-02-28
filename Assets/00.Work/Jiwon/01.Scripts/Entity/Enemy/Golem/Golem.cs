@@ -17,6 +17,22 @@ public class Golem : BTEnemy
         _attackCompo = GetComp<GolemAttackCompo>();
     }
 
+    protected override void AfterInit()
+    {
+        base.AfterInit();
+        _animationTrigger.OnAttackTrigger += _attackCompo.Attack;
+        _animationTrigger.OnAttackTrigger2 += _attackCompo.Attack2;
+        _animationTrigger.OnAttackTrigger3 += _attackCompo.Attack3;
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        _animationTrigger.OnAttackTrigger -= _attackCompo.Attack;
+        _animationTrigger.OnAttackTrigger2 -= _attackCompo.Attack2;
+        _animationTrigger.OnAttackTrigger3 -= _attackCompo.Attack3;
+    }
+
     private void Start()
     {
         BlackboardVariable<GolemStateChangeEvent> stateChangeEvent

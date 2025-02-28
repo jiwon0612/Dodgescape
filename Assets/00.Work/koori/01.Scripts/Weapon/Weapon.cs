@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,9 +9,15 @@ public class Weapon : MonoBehaviour
     [SerializeField] private GameEventChannelSO _playerEventChannel;
 
     private List<int> hitEntities = new List<int>();
+    private ParticleSystem _particle;
 
     private bool _canAttack = false;
 
+    private void Awake()
+    {
+        _particle = GetComponentInChildren<ParticleSystem>();
+    }
+    
     private void OnEnable()
     {
         _playerEventChannel.AddListener<AttackEvent>(OnAttackEvent);
@@ -28,6 +35,7 @@ public class Weapon : MonoBehaviour
 
             entity.TakeDamage(_attackData.damage, knockBack, _attackData.stunDuration, _entityFinder.target);
             hitEntities.Add(entity.GetInstanceID());
+            _particle.Play();
         }
     }
 
