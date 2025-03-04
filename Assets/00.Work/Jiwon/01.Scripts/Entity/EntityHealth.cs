@@ -35,6 +35,7 @@ public class EntityHealth : MonoBehaviour ,IEntityComp
 
         if (IsEvasion)
         {
+            Debug.Log("dd");
             OnEvasionEvent?.Invoke(dealer);
             return;
         }
